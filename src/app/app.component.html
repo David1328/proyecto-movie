@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+      </mat-menu>
+      <span>DISKRECORDS</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+<div>
+<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,104 @@
+  <div class="containerClientSol">
+    <div class="info-despegable">
+    </div>
+    <div class="formularios">
+      <div class="formulario">
+    <form [formGroup]="formcarrito"  class="forms" #frmCarrito="ngForm"  (ngSubmit)="enviarAElCarrito(formcarrito.value)">
+            <section class="contenedorComponete">
+                <label class="titulo">Cedula</label>
+                <br>
+                <mat-form-field appearance="fill">
+                  <input type="number" matInput placeholder="1" formControlName="cedula" class="formu">
+                  <mat-error *ngIf="formcarrito.get('cedula').hasError('required')">
+                      Por favor agrege la cedula
+                  </mat-error>
+                  <mat-error *ngIf="formcarrito.get('cedula').hasError('min')">
+                      La cedula debe ser mayor de 6 digitos
+                  </mat-error>
+                  <mat-error *ngIf="formcarrito.get('cedula').hasError('max')">
+                    La cedula debe ser menor de 10 digitos
+                  </mat-error>
+                </mat-form-field>
+              </section>
+        <section class="contenedorComponete borde">
+          <label class="titulo">Seleccione el producto que desea comprar </label>
+          <mat-form-field appearance="fill" class="cajas">
+            <select matNativeControl formControlName="producto"  (change)="onSelect($event.target.value)">
+                <option label="--Seleccione un producto--"></option>
+                <option *ngFor="let product of productos" [value]="product.value" >{{product.producto}}</option>
+            </select>
+          </mat-form-field>
+        </section>
+        <section class="contenedorComponete borde">
+          <label class="titulo">Producto</label>
+          <mat-form-field class="">
+            <mat-select formControlName="productoSelect">
+                <div *ngIf="banderaProducto==1">
+                    <option label="Seleccione un producto el disco a comprar"></option>
+                    <mat-option  *ngFor="let disco of discos" value="{{disco.id_disco}}">{{disco.nombre_disco}}</mat-option>
+                </div>
+                <div *ngIf="banderaProducto==2">
+                    <option label="Seleccione un producto la cancion a comprar"></option>
+                    <mat-option  *ngFor="let cancion of canciones" value="{{cancion.value}}">{{cancion.producto}}</mat-option>
+                </div>
+            </mat-select>
+            <mat-error *ngIf="formcarrito.get('productoSelect').hasError('required')">
+              Debe seleccionar lo que quiere comprar
+          </mat-error>
+          </mat-form-field>
+        </section>
+        <section class="contenedorComponete">
+          <label class="titulo">Cantidad del producto</label>
+          <br>
+          <mat-form-field appearance="fill">
+            <input type="number" matInput placeholder="1" formControlName="cantidad" class="formu">
+            <mat-error *ngIf="formcarrito.get('cantidad').hasError('required')">
+                Por favor agrege una cantidad
+            </mat-error>
+            <mat-error *ngIf="formcarrito.get('cantidad').hasError('min')">
+                La cantidad debe ser mayor de 0
+            </mat-error>
+            <mat-error *ngIf="formcarrito.get('cantidad').hasError('max')">
+                La cantidad debe ser menor que de 10
+            </mat-error>
+          </mat-form-field>
+        </section>
+        <section class="contenedorComponete buttonsonly">
+          <button mat-raised-button id="basic"  type="submit" class="buttons" [disabled]="frmCarrito.invalid">Agregar a el carrito</button>
+        </section>
+      </form>
+  </div>
+  <div style="background-color: black; height: 370px; width: 1px;"></div>
+    <div class="formulario">
+      <form [formGroup]="reservarForm" #frmReserva="ngForm" class="forms" ><!--(ngSubmit)="(enviarSolicitud(reservarForm.value))-->
+        <section class="contenedorComponete">
+          <label class="titulo">Kilometros: </label>
+          <ng-template>
+            <p class="mostrarKMtar">0</p>
+          </ng-template>
+        </section>
+        <section class="contenedorComponete">
+          <label class="titulo">Tarifa: </label>
+          <ng-template>
+            <p class="mostrarKMtar">------</p>
+          </ng-template>
+        </section>
+        <section class="contenedorComponete borde">
+          <label class="titulo">Modo de pago:</label>
+          <mat-form-field class="">
+            <mat-select formControlName="pago">
+            </mat-select>
+            <mat-error *ngIf="reservarForm.get('pago').hasError('required')">
+              Seleccione el metodo de pago
+          </mat-error>
+          </mat-form-field>
+        </section>
+        <section class="contenedorComponete buttonsonly">
+          <button mat-raised-button class="buttons" [disabled]="frmReserva.invalid">Guardar</button>
+        </section>
+        <section class="contenedorComponete buttonsonly">
+          <button mat-raised-button class="buttons2" [disabled]="frmReserva.invalid">Generar recibo</button>
+        </section>
+      </form>
+    </div>
+  </div>
