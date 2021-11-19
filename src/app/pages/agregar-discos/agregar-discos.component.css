@@ -18,3 +18,19 @@ table {
   padding: 10px;
   width: 40%;
 }
+
+.descripcion h1{
+  margin: auto;
+  margin-top: 10px;
+  width: 80%;
+  text-align: center;
+  background-color: rgb(43, 6, 177);
+  color: rgb(254, 254, 255);
+  font-weight: 500;
+  padding: 15px;
+
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
