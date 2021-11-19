@@ -1,35 +1,8 @@
 <div>
-    <div>
-        <table mat-table [dataSource]="discos" matSort  class="mat-elevation-z8">
-            <ng-container matColumnDef="Nombre del disco">
-              <th mat-header-cell *matHeaderCellDef> Nombre del disco </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombre_disco}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Compañia Productora">
-              <th mat-header-cell *matHeaderCellDef> Compañia productora </th>
-              <td mat-cell *matCellDef="let element"> {{element.compania_productora}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Formato">
-                <th mat-header-cell *matHeaderCellDef> Formato </th>
-                <td mat-cell *matCellDef="let element"> {{element.formato}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Año de lanzamiento">
-                <th mat-header-cell *matHeaderCellDef> Año de lanzamiento </th>
-                <td mat-cell *matCellDef="let element"> {{element.ano_lanzamiento}} </td>
-              </ng-container>
-              <ng-container matColumnDef="Cantidad">
-                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                <td mat-cell *matCellDef="let element" type="password"> {{element.cantidad_discos}} </td>
-              </ng-container>
-              <ng-container matColumnDef="Precio">
-                <th mat-header-cell *matHeaderCellDef> Precio </th>
-                <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
-              </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+    <div class="descripcion">
+        <h1>AGREGAR DISCOS</h1>
     </div>
-    <div>
+    <div class="datos">
         <form [formGroup]="formDiscoAgregar" (ngSubmit)="agregarDisco()">
             <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Nombre Disco</mat-label>
@@ -55,18 +28,19 @@
                 <mat-label>Formato</mat-label>
                 <select matNativeControl formControlName="formato">
                     <option label="--Seleccione un el formato--"></option>
-                    <option *ngFor="let product of formatos" [value]="product.value" >{{product.tp_formato}}</option>
+                    <option *ngFor="let product of formatos" [value]="product.value">{{product.tp_formato}}</option>
                 </select>
             </mat-form-field>
             <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Artista</mat-label>
                 <select matNativeControl formControlName="artista">
                     <option label="--Seleccione un el Artista--"></option>
-                    <option *ngFor="let cantante of cantantes" [value]="cantante.idCantante" >{{cantante.nick_name}}</option>
+                    <option *ngFor="let cantante of cantantes" [value]="cantante.idCantante">{{cantante.nick_name}}
+                    </option>
                 </select>
             </mat-form-field>
             <br>
-            <button  class="ancho" mat-raised-button mat-button color="primary" >ingresar</button>
+            <button class="ancho" mat-raised-button mat-button color="primary">ingresar</button>
         </form>
     </div>
 </div>

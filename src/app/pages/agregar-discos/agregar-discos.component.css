@@ -1,5 +1,20 @@
+.descripcion {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 table {
-    width: 80%;
-    position: static;
-    margin: auto;
+  width: 80%;
+  position: static;
+  margin: auto;
+}
+
+.datos {
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+.ancho {
+  padding: 10px;
+  width: 40%;
 }

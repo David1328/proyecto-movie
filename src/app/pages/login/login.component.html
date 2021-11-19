@@ -1,36 +1,37 @@
 <div class="body">
 
-    <div class="login">
-        <h1 class="h3 mb-3 fw-normal">Ingresar como Administrador</h1>
-        <form [formGroup]="formIngreso" #frmIngreso="ngForm" (ngSubmit)="ingresar()">
-        <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Usuario</mat-label>
-            <input matInput formControlName="username">
-            <mat-error *ngIf="formIngreso.get('username').hasError('required')">
-              Por favor el nombre de Usuario
-            </mat-error>
-            <mat-error *ngIf="formIngreso.get('username').hasError('minlength')">
-              La nombre debe ser mayor de 6 digitos
-            </mat-error>
-            <mat-error *ngIf="formIngreso.get('username').hasError('maxlength')">
-              La nombre debe ser menor de 10 digitos
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="userpassword" type="password">
-            <mat-error *ngIf="formIngreso.get('userpassword').hasError('required')">
-              Por favor ingrese la contraseña
-            </mat-error>
-            <mat-error *ngIf="formIngreso.get('userpassword').hasError('minlength')">
-              La nombre debe ser mayor de 6 digitos
-            </mat-error>
-            <mat-error *ngIf="formIngreso.get('userpassword').hasError('maxlength')">
-              La nombre debe ser menor de 10 digitos
-            </mat-error>
-          </mat-form-field>
-          <br>
-          <button  class="ancho" mat-raised-button mat-button color="primary" [disabled]="frmIngreso.invalid">ingresar</button>
-        </form>
-    </div>
+  <div class="login">
+    <h1 class="h3 mb-3 fw-normal">Ingresar como Administrador</h1>
+    <form [formGroup]="formIngreso" #frmIngreso="ngForm" (ngSubmit)="ingresar()">
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username">
+        <mat-error *ngIf="formIngreso.get('username').hasError('required')">
+          Por favor el nombre de Usuario
+        </mat-error>
+        <mat-error *ngIf="formIngreso.get('username').hasError('minlength')">
+          La nombre debe ser mayor de 6 digitos
+        </mat-error>
+        <mat-error *ngIf="formIngreso.get('username').hasError('maxlength')">
+          La nombre debe ser menor de 10 digitos
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="userpassword" type="password">
+        <mat-error *ngIf="formIngreso.get('userpassword').hasError('required')">
+          Por favor ingrese la contraseña
+        </mat-error>
+        <mat-error *ngIf="formIngreso.get('userpassword').hasError('minlength')">
+          La nombre debe ser mayor de 6 digitos
+        </mat-error>
+        <mat-error *ngIf="formIngreso.get('userpassword').hasError('maxlength')">
+          La nombre debe ser menor de 10 digitos
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <button class="ancho" mat-raised-button mat-button color="primary"
+        [disabled]="frmIngreso.invalid">ingresar</button>
+    </form>
+  </div>
 </div>
