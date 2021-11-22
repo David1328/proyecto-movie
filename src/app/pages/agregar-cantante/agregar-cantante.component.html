@@ -1,4 +1,22 @@
 <div>
+    <div>
+        <table mat-table [dataSource]="artistas" matSort  class="mat-elevation-z8">
+            <ng-container matColumnDef="Nombre Artisco">
+              <th mat-header-cell *matHeaderCellDef> Nombre Artistico </th>
+              <td mat-cell *matCellDef="let element"> {{element.nick_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Categoria">
+              <th mat-header-cell *matHeaderCellDef> Catergoria </th>
+              <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+            </ng-container>
+            <ng-component matColumnDef="Editar">
+                <th mat-header-cell *matHeaderCellDef> Catergoria </th>
+                <td mat-cell *matCellDef="let element"> <button mat-button (click)="comentarConductor(element.id)"><mat-icon color="primary">edit</mat-icon> </button></td>
+            </ng-component>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
     <div class="descripcion">
         <h1>AGREGAR CANTANTE</h1>
     </div>
