@@ -8,12 +8,15 @@ import { Discos } from '../_model/Discos';
 })
 export class AgregarDiscosService {
 
-  private url: string = `${environment.HOST}/discoService`;
+  private url: string = `${environment.HOST}/disco`;
 
   constructor(private http: HttpClient) { }
 
   getDiscos(){
     return this.http.get<Discos[]>(this.url +"/obtenerListaDiscos");
+  }
+  getDiscosPorArtista(id_artista){
+    return this.http.get<Discos[]>(this.url +"/obtenerDiscosId/"+id_artista);
   }
   
 }

@@ -288,3 +288,9 @@
 .borde {
   border-bottom: solid 1px;
 }
+
+table {
+  width: 125%;
+  position: static;
+  margin: auto;
+}

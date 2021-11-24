@@ -22,7 +22,7 @@
         <section class="contenedorComponete borde">
           <label class="titulo">Seleccione el producto que desea comprar </label>
           <mat-form-field appearance="fill" class="cajas">
-            <select matNativeControl formControlName="producto" (change)="onSelect($event.target.value)">
+            <select matNativeControl formControlName="tipo_venta" (change)="onSelect($event.target.value)">
               <option label="--Seleccione un producto--"></option>
               <option *ngFor="let product of productos" [value]="product.value">{{product.producto}}</option>
             </select>
@@ -31,18 +31,18 @@
         <section class="contenedorComponete borde">
           <label class="titulo">Producto</label>
           <mat-form-field class="">
-            <mat-select formControlName="productoSelect">
-              <div *ngIf="banderaProducto==1">
-                <option label="Seleccione un producto el disco a comprar"></option>
-                <mat-option *ngFor="let disco of discos" value="{{disco.id_disco}}">{{disco.nombre_disco}}</mat-option>
-              </div>
+            <mat-select formControlName="idTipo_venta">
               <div *ngIf="banderaProducto==2">
+                <option label="Seleccione un producto el disco a comprar"></option>
+                <mat-option *ngFor="let disco of discos" value="{{disco.id_disco}}">{{disco.precio}}</mat-option>
+              </div>
+              <div *ngIf="banderaProducto==1">
                 <option label="Seleccione un producto la cancion a comprar"></option>
-                <mat-option *ngFor="let cancion of canciones" value="{{cancion.value}}">{{cancion.producto}}
+                <mat-option *ngFor="let cancion of canciones" value="{{cancion.id}}">{{cancion.nombre}}
                 </mat-option>
               </div>
             </mat-select>
-            <mat-error *ngIf="formcarrito.get('productoSelect').hasError('required')">
+            <mat-error *ngIf="formcarrito.get('idTipo_venta').hasError('required')">
               Debe seleccionar lo que quiere comprar
             </mat-error>
           </mat-form-field>
@@ -71,36 +71,33 @@
     </div>
     <div style="background-color: black; height: 370px; width: 1px;"></div>
     <div class="formulario">
-      <form [formGroup]="reservarForm" #frmReserva="ngForm" class="forms">
-        <!--(ngSubmit)="(enviarSolicitud(reservarForm.value))-->
-        <section class="contenedorComponete">
-          <label class="titulo">Kilometros: </label>
-          <ng-template>
-            <p class="mostrarKMtar">0</p>
-          </ng-template>
-        </section>
-        <section class="contenedorComponete">
-          <label class="titulo">Tarifa: </label>
-          <ng-template>
-            <p class="mostrarKMtar">------</p>
-          </ng-template>
-        </section>
-        <section class="contenedorComponete borde">
-          <label class="titulo">Modo de pago:</label>
-          <mat-form-field class="">
-            <mat-select formControlName="pago">
-            </mat-select>
-            <mat-error *ngIf="reservarForm.get('pago').hasError('required')">
-              Seleccione el metodo de pago
-            </mat-error>
-          </mat-form-field>
-        </section>
-        <section class="contenedorComponete buttonsonly">
-          <button mat-raised-button class="buttons" [disabled]="frmReserva.invalid">Guardar</button>
-        </section>
-        <section class="contenedorComponete buttonsonly">
-          <button mat-raised-button class="buttons2" [disabled]="frmReserva.invalid">Generar recibo</button>
-        </section>
-      </form>
+      <table mat-table [dataSource]="CarritoTabla" matSort  class="mat-elevation-z8">
+        <caption>Compras</caption>
+        <ng-container matColumnDef="Tipo De producto">
+          <th mat-header-cell *matHeaderCellDef> Tipo de producto </th>
+          <td mat-cell *matCellDef="let element"> {{element.idTipo_venta}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Producto">
+          <th mat-header-cell *matHeaderCellDef> Producto </th>
+          <td mat-cell *matCellDef="let element"> {{element.ventaProducto}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Cantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.precioTotal}} </td>
+          </ng-container>
+          <ng-component matColumnDef="Eliminar">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element"> <button mat-button ><mat-icon color="primary">edit</mat-icon> </button></td> 
+          </ng-component>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <section class="contenedorComponete buttonsonly">
+        <button mat-raised-button id="basic" type="submit" class="buttons">Comprar</button>
+      </section>
     </div>
   </div>

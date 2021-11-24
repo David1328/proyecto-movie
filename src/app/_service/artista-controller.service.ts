@@ -8,7 +8,7 @@ import { Cantante } from '../_model/Cantante';
 })
 export class ArtistaControllerService {
 
-  private url: string = `${environment.HOST}/cantanteService`;
+  private url: string = `${environment.HOST}/cantante`;
 
   constructor(private http: HttpClient) { }
 

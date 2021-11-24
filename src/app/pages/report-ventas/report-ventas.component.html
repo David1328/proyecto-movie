@@ -1,0 +1,24 @@
+<div>
+    <div>
+        <table mat-table [dataSource]="discos" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="Tipo De Venta">
+                <th mat-header-cell *matHeaderCellDef> Tipo De Venta </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_disco}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Producto Vendido">
+                <th mat-header-cell *matHeaderCellDef> Producto Vendido </th>
+                <td mat-cell *matCellDef="let element"> {{element.compania_productora}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Cantidad">
+                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                <td mat-cell *matCellDef="let element"> {{element.formato}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Descripción">
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                <td mat-cell *matCellDef="let element"> {{element.ano_lanzamiento}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Cantante } from 'src/app/_model/Cantante';
 import { ArtistaControllerService } from 'src/app/_service/artista-controller.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -34,10 +35,14 @@ export class AgregarCantanteComponent implements OnInit {
 
 
     async ngOnInit(): Promise<void> {
+      if(sessionStorage.getItem(environment.TOKEN)==null){
+        this.router.navigate(['adminInterfaz']);
+      }else{
       await this.delay(2000);
       this.artistaSerivce.getArtisic().subscribe((artis :Cantante[])=>{
         this.artistas = artis;
       });
+    }
     }
 
 

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  HOST:"http://localhost:8080/proyectoDC/apiProyectoCD"
+  HOST:"http://localhost:8080/proyectoDC/apiProyectoCD",
+  TOKEN: 'access_token',
   /*TOKEN: 'access_token',
   REINTENTOS:2,
   user: null,

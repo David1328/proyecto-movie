@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { InterfazAdministradorComponent } from './pages/interfaz-administrador/interfaz-administrador.component';
 import { AgregarDiscosComponent } from './pages/agregar-discos/agregar-discos.component';
 import { AgregarCantanteComponent } from './pages/agregar-cantante/agregar-cantante.component';
+import { AgregarCancionComponent } from './pages/agregar-cancion/agregar-cancion.component';
+import { ReportVentasComponent } from './pages/report-ventas/report-ventas.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AgregarCantanteComponent } from './pages/agregar-cantante/agregar-canta
     InterfazAdministradorComponent,
     AgregarDiscosComponent,
     AgregarCantanteComponent,
+    AgregarCancionComponent,
+    ReportVentasComponent,
   ],
   imports: [
     BrowserModule,
