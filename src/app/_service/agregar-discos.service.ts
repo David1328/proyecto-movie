@@ -18,5 +18,9 @@ export class AgregarDiscosService {
   getDiscosPorArtista(id_artista){
     return this.http.get<Discos[]>(this.url +"/obtenerDiscosId/"+id_artista);
   }
-  
+  /*postAgregarDisco(nuevoDisco:Discos){
+    return this.http.post<any>()
+  }*/
+
+
 }

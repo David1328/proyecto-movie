@@ -60,31 +60,32 @@ export class AgregarDiscosComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(10),
+      Validators.pattern('[a-zA-Z ]*'),
     ]),
     ano_lanzamiento: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(10),
+      Validators.min(1860),
+      Validators.max(2021),
     ]),
     cantidad_discos: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(10),
+      Validators.min(1),
+      Validators.max(300),
     ]),
     precio: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(10),
+      Validators.min(1000),
+      Validators.max(100000),
     ]),
     formato: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(10),
+      Validators.min(1),
+      Validators.max(3),
     ]),
     artista: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(10),
+      Validators.min(1),
+      Validators.max(200),
     ]),
   });
 
@@ -97,5 +98,7 @@ export class AgregarDiscosComponent implements OnInit {
         "precio": null
    */
 
-  agregarDisco() {}
+  agregarDisco(values) {
+    
+  }
 }

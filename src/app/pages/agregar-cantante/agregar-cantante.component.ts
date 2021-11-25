@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { Cantante } from 'src/app/_model/Cantante';
 import { ArtistaControllerService } from 'src/app/_service/artista-controller.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,11 +19,10 @@ export class AgregarCantanteComponent implements OnInit {
   artistas: Cantante[];
   cantante:Cantante;
 
-  @ViewChild(MatTable) table: MatTable<Cantante>;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   formAgregarCantante = new FormGroup ({
-    nick_name: new FormControl('', [Validators.required,Validators.minLength(2), Validators.maxLength(20)]),
+    nick_name: new FormControl('', [Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
     categoria: new FormControl('', [Validators.required,Validators.minLength(3),Validators.maxLength(10),Validators.pattern('[a-zA-Z ]*')]),
   });
 
@@ -35,14 +33,10 @@ export class AgregarCantanteComponent implements OnInit {
 
 
     async ngOnInit(): Promise<void> {
-      if(sessionStorage.getItem(environment.TOKEN)==null){
-        this.router.navigate(['adminInterfaz']);
-      }else{
       await this.delay(2000);
       this.artistaSerivce.getArtisic().subscribe((artis :Cantante[])=>{
         this.artistas = artis;
       });
-    }
     }
 
 
@@ -53,7 +47,6 @@ export class AgregarCantanteComponent implements OnInit {
     },(respuesta:HttpErrorResponse)=>{
       console.log(respuesta.error);
       if(respuesta.error.text != null){
-        this.ngOnInit();
         this.snackMessaange.open(respuesta.error.text, 'Aceptar', {
           duration: 5000,
         });
@@ -62,7 +55,7 @@ export class AgregarCantanteComponent implements OnInit {
           duration: 5000,
         });
       }
-      
+      this.ngOnInit();
     });
   }
 
