@@ -1,41 +1,44 @@
-<mat-form-field appearance="fill">
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="1" #input>
-  </mat-form-field>
-  <table mat-table [dataSource]="usuarios" matSort  class="mat-elevation-z8">
+
+<div class="tablaUsuario">
+  <table mat-table [dataSource]="usuarios" matSort class="mat-elevation-z8">
     <caption>Usuarios</caption>
     <ng-container matColumnDef="UserId">
       <th mat-header-cell *matHeaderCellDef> UserId </th>
       <td mat-cell *matCellDef="let element"> {{element}} </td>
     </ng-container>
     <ng-container matColumnDef="Sugerir">
-        <th mat-header-cell *matHeaderCellDef> Sugerir peliculas </th>
-        <td mat-cell *matCellDef="let element"><button mat-button (click)="sugerirPelicula(element)">
+      <th mat-header-cell *matHeaderCellDef> Sugerir peliculas </th>
+      <td mat-cell *matCellDef="let element"><button mat-button (click)="sugerirPelicula(element)">
           <mat-icon color="warn">data_thresholding</mat-icon>
         </button> </td>
-      </ng-container>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-<!--<select matNativeControl  (change)="onSelect($event.target.value)">
-    <option style="color: black;" label="--Seleccione un el tipo de actividad--"></option>
-    <option style="color: black;" *ngFor="let usuario of usuarios" value="{{usuario}}">{{usuario}}</option>
-</select>-->
-<mat-list-item *ngFor="let recomendacion of listaDeRecomendadas" class="list-horizontal">
+  <mat-paginator [pageSizeOptions]="[3, 5, 10]" [pageSize]="3" style="position: static; margin: auto; width: 80%;">
+  </mat-paginator>
+</div>
+<div class="tarjetas">
+  <mat-list-item *ngFor="let recomendacion of listaDeRecomendadas" class="list-horizontal">
+    <br>
     <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title> {{recomendacion[0]}}</mat-card-title>
-          <mat-card-subtitle> años {{recomendacion[3]}}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src={{recomendacion[4]}} alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            {{recomendacion[2]}}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <a href="" target="_blank" rel="noopener noreferrer">Link para trailler</a>
-        </mat-card-actions>
-      </mat-card>
+      <mat-card-header>
+        <div mat-card-avatar style="background-image: url('{{recomendacion[4]}}');
+            background-size: cover;"></div>
+        <mat-card-title> {{recomendacion[0]}}</mat-card-title>
+        <mat-card-subtitle> AÑO {{ recomendacion[3] | date:'dd-MM-yyyy ' }} </mat-card-subtitle>
+      </mat-card-header>
+      <!--<img mat-card-image src={{recomendacion[4]}} alt="Photo of a Shiba Inu">-->
+      <mat-card-content>
+        <p>
+          SINOPSIS <br>
+          {{recomendacion[2]}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a href="https://www.imdb.com/title/{{recomendacion[1]}}" target="_blank" rel="noopener noreferrer">LINK
+          TRILLER</a>
+      </mat-card-actions>
+    </mat-card>
   </mat-list-item>
+</div>

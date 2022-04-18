@@ -1,13 +1,34 @@
-table {
-    width: 80%;
-    position: static;
-    margin: auto;
+
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }
-.example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+
+.tablaUsuario {
+  width: 45%;
+  position: static;
+  margin: auto;
+  float: left;
+}
+.tablaUsuario table{
+  width: 60%;
+  position: static;
+  margin: auto;
+}
+.tablaUsuario mat-paginator{
+  width: 100%;
+  position: static;
+  margin: auto;
+}
+
+.tarjetas{
+  width: 45%;
+  position: static;
+  margin: auto;
+  float: right;
+}
+
+.tarjetas .example-card{
+  width: 60%;
+}

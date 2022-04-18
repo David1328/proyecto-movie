@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RecomendacionService } from 'src/app/_service/recomendacion.service';
 import { User } from 'src/app/_model/User';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-panel-recomendacion',
@@ -15,20 +17,29 @@ export class PanelRecomendacionComponent implements OnInit {
   usuarios= new MatTableDataSource<string>();
   displayedColumns: string[] = ['UserId','Sugerir'];
 
+
+  @ViewChild(MatSort) sort: MatSort; 
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+
   constructor(private serviceRecomendacion:RecomendacionService) { }
 
   async ngOnInit(): Promise<void> {
     await this.delay(1000);
     this.serviceRecomendacion.getUsuario().subscribe(data=>{
       this.usuarios=new MatTableDataSource(data);
+      this.usuarios.sort = this.sort;
+      this.usuarios.paginator = this.paginator;
     })
   }
 
   applyFilter(event: Event) {
-    console.log(event)
     const filterValue = (event.target as HTMLInputElement).value;
-    this.usuarios.filter = "1";
-  }  
+    this.usuarios.filter = filterValue.trim().toLowerCase();
+
+    if (this.usuarios.paginator) {
+      this.usuarios.paginator.firstPage();
+    }
+  }
 
 
   onSelect(value){
@@ -37,10 +48,11 @@ export class PanelRecomendacionComponent implements OnInit {
 
   sugerirPelicula(id){
     this.serviceRecomendacion.getRecomendados(id).subscribe(data=>{
+      data.splice(0,1);
       this.listaDeRecomendadas = data
-      console.log(data)
+    },err=>{
+      this.sugerirPelicula(id);
     })
-    console.log(id)
   }
   private delay(ms:number){
     return new Promise(resolve => setTimeout(resolve, ms));
